@@ -4,7 +4,6 @@ import { fileURLToPath } from "url";
 import fs from "node:fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const data = "I am fresh and young";
 
 const copy = async () => {
   const filePath = path.join(__dirname, "files");
