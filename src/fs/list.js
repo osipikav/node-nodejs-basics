@@ -6,10 +6,11 @@ import fs from "node:fs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const list = async () => {
-  const filePath = path.join(__dirname, "files");
-  fs.readdir(filePath, (err, files) => {
+  const folderPath = path.join(__dirname, "files");
+  fs.readdir(folderPath, (err, files) => {
     if (err) throw new Error("FS operation failed");
     console.log(files);
   });
 };
+
 await list();

@@ -6,21 +6,21 @@ import fs from "node:fs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const copy = async () => {
-  const filePath = path.join(__dirname, "files");
-  const finalFilePath = path.join(__dirname, "files_copy");
+  const folderPath = path.join(__dirname, "files");
+  const finalFolderPath = path.join(__dirname, "files_copy");
 
   fs.readdir(__dirname, (err, files) => {
        if (files.includes("files_copy")) {
         throw new Error ("FS operation failed");
     }
-  fs.readdir(filePath, (err, files) => {
+  fs.readdir(folderPath, (err, files) => {
     if (err) throw new Error("FS operation failed");
 
     fs.mkdir("./files_copy", () => {
       files.forEach((i) => {
         fs.copyFile(
-          path.join(filePath, i),
-          path.join(finalFilePath, i),
+          path.join(folderPath, i),
+          path.join(finalFolderPath, i),
           (err) => {
             if (err) throw err
           }
