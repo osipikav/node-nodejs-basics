@@ -9,7 +9,7 @@ const transform = async () => {
       callback(null, reversedText);
     },
   });
-  await stdin.pipe(reverseTransform).pipe(stdout);
+  stdin.pipe(reverseTransform).pipe(stdout);
 };
 
 await transform();
