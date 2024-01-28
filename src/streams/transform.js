@@ -1,5 +1,15 @@
+import { stdin, stdout } from "process";
+import { Transform } from "node:stream";
+
 const transform = async () => {
-    // Write your code here 
+  stdout.write("Input data\nCtrl+C for exit\n");
+  const reverseTransform = new Transform({
+    transform(chunk, encoding, callback) {
+      const reversedText = chunk.toString().split("").reverse().join("");
+      callback(null, reversedText);
+    },
+  });
+  await stdin.pipe(reverseTransform).pipe(stdout);
 };
 
 await transform();
