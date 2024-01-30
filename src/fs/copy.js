@@ -10,24 +10,27 @@ const copy = async () => {
   const finalFolderPath = path.join(__dirname, "files_copy");
 
   fs.readdir(__dirname, (err, files) => {
-       if (files.includes("files_copy")) {
-        throw new Error ("FS operation failed");
+    if (files.includes("files_copy")) {
+      throw new Error("FS operation failed");
     }
-  fs.readdir(folderPath, (err, files) => {
-    if (err) throw new Error("FS operation failed");
 
-    fs.mkdir("./files_copy", () => {
-      files.forEach((i) => {
-        fs.copyFile(
-          path.join(folderPath, i),
-          path.join(finalFolderPath, i),
-          (err) => {
-            if (err) throw err
-          }
-        );
-      });
+    fs.mkdir(finalFolderPath, (err) => {
+      if (err) throw new Error("FS operation failed");
     });
-  });
+
+    fs.readdir(folderPath, (err, files) => {
+      if (err) throw new Error("FS operation failed");
+
+        files.forEach((i) => {
+          fs.copyFile(
+            path.join(folderPath, i),
+            path.join(finalFolderPath, i),
+            (err) => {
+              if (err) throw err
+            }
+          );
+        });
+      });
   });
 };
 
